@@ -6,7 +6,7 @@ It is available for both mobile and web applications.
 
 To use React Router on the Web, you need to run;
 
-```console
+```bash
 npm install react-router-dom
 ```
 
