@@ -12,3 +12,52 @@ The _useReducer_ hook:
 
 - Returns an array containing the current state value and a _dispatch()
 _ function that can be used to trigger state changes by dispatching actions to the reducer.
+
+Below is a blueprint:
+
+```jsx
+import { useReducer } from "react";
+
+function reducerFunction(state, action) {}
+function App() {
+  const [state, dispatch] = useReducer(reducerFunction, initialState);
+  return <div></div>;
+}
+
+export default App;
+```
+
+```jsx
+import { useReducer } from "react";
+
+function reducerFunction(state, action) {
+  if (action.type === "update-name") {
+    return { ...state, name: "JOHNNY" };
+  }
+
+  if (action.type === "update-age") {
+    return { ...state, age: state.age + 1 };
+  }
+}
+
+function App() {
+  const [profile, dispatch] = useReducer(reducerFunction, {
+    name: "John",
+    age: 25,
+  });
+  return (
+    <div>
+      <p>Name: {profile.name}</p>
+      <p>Age: {profile.age}</p>
+      <button onClick={() => dispatch({ type: "update-name" })}>
+        Update Name
+      </button>
+      <button onClick={() => dispatch({ type: "update-age" })}>
+        Update Age
+      </button>
+    </div>
+  );
+}
+```
+
+**NOTE: useReducer is not a replacement of the useState hook, we only use it when state management gets complex**
